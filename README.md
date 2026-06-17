@@ -2,6 +2,111 @@
 
 An AI-powered Business Intelligence (BI) Assistant and Executive Dashboard for the Beverages category in Fast-Moving Consumer Goods (FMCG). Business users can ask natural language questions and receive instant analytical summaries, structured tables, and dynamically rendered charts directly.
 
+## System Architecture
+
+```mermaid
+graph TD
+    User([User]) <--> Frontend[Next.js 15 Dashboard & Chat UI]
+    Frontend <--> Backend[FastAPI Backend]
+    
+    subgraph Backend Services
+        Backend <--> DB[(PostgreSQL / SQLite Database)]
+        Backend <--> Analytics[Analytics Engine / Pandas KPIs]
+        Backend <--> AI[AI Layer / LangChain Agent]
+        Backend <--> Eval[Evaluation Metrics Tracker]
+    end
+    
+    subgraph AI Pipeline
+        AI --> Context[Resolve History & Context]
+        Context --> Intent[Intent Detection & KPI Mapping]
+        Intent --> Route{Route Query}
+        Route -->|Template Match| TemplateSQL[Query Templates + Param Extraction]
+        Route -->|Complex Semantic KPI| SemanticSQL[Semantic KPI Layer]
+        Route -->|General Query| GeneralSQL[Safe SQL Gen]
+        TemplateSQL --> Execution[SQL Execution & Self-Correction]
+        SemanticSQL --> Execution
+        GeneralSQL --> Execution
+        Execution --> HallucinationGuard{Row Count > 0?}
+        HallucinationGuard -->|No| NoData[Return 'No matching data found']
+        HallucinationGuard -->|Yes| Summary[Business Explanation Mode + Viz Meta]
+    end
+```
+
+### Database Schema (ERD)
+
+```mermaid
+erDiagram
+    products {
+        string product_id PK
+        string product_name
+        string brand
+        string category
+        string sub_category
+        int pack_size_ml
+        decimal unit_price
+    }
+    stores {
+        string store_id PK
+        string store_name
+        string region
+        string city
+        string store_format
+    }
+    sales {
+        int id PK
+        date week_start_date
+        string product_id FK
+        string store_id FK
+        string region
+        int units_sold
+        decimal revenue
+        boolean promotion_flag
+        string promotion_type
+        decimal discount_pct
+    }
+    inventory {
+        int id PK
+        date week_start_date
+        string product_id FK
+        string store_id FK
+        int opening_stock
+        int units_received
+        int units_sold
+        int closing_stock
+        boolean stockout_flag
+    }
+    chat_sessions {
+        string session_id PK
+        string title
+        datetime created_at
+    }
+    chat_messages {
+        int id PK
+        string session_id FK
+        string role
+        string content
+        string sql_queries
+        string query_results
+        string chart_type
+        datetime created_at
+    }
+    evaluation_metrics {
+        int id PK
+        datetime timestamp
+        string user_query
+        string sql_generated
+        boolean sql_success
+        int latency_ms
+        boolean is_empty_result
+        int user_satisfaction
+    }
+    products ||--o{ sales : "product_id"
+    stores ||--o{ sales : "store_id"
+    products ||--o{ inventory : "product_id"
+    stores ||--o{ inventory : "store_id"
+    chat_sessions ||--o{ chat_messages : "session_id"
+```
+
 ## Key Features
 
 1. **Executive Dashboard**: KPI cards and interactive charts summarizing revenue trends, regional performance, category sales share, and top-selling products.
