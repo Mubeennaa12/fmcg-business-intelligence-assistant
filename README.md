@@ -1,3 +1,8 @@
+---
+sdk: docker
+app_port: 7860
+---
+
 # FMCG Beverages Business Intelligence Assistant
 
 An AI-powered Business Intelligence (BI) Assistant and Executive Dashboard for the Beverages category in Fast-Moving Consumer Goods (FMCG). Business users can ask natural language questions and receive instant analytical summaries, structured tables, and dynamically rendered charts directly.
