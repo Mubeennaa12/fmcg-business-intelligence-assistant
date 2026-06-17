@@ -1,0 +1,6 @@
+product_id,product_name,brand,category,sub_category,pack_size_ml,unit_price
+BEV-001,Cola Blast 330ml,ColaBlast,Carbonated Drinks,Cola,330,1.5
+BEV-002,Cola Blast Diet 330ml,ColaBlast,Carbonated Drinks,Cola,330,1.6
+BEV-003,Lemonade Fizz 500ml,FizzCo,Carbonated Drinks,Lemon Soda,500,1.75
+BEV-004,Ginger Fizz 500ml,FizzCo,Carbonated Drinks,Ginger Ale,500,1.8
+BEV-005,Citrus Premium Orange 1L,CitrusPremium,Juice,Fruit Juice,1000,3.5

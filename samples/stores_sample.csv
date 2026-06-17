@@ -1,0 +1,6 @@
+store_id,store_name,region,city,store_format
+STR-001,Supermarket Chicago #1,North,Chicago,Supermarket
+STR-002,Hypermarket Chicago #2,North,Chicago,Hypermarket
+STR-003,Convenience Minneapolis #3,North,Minneapolis,Convenience
+STR-004,Wholesale Detroit #4,North,Detroit,Wholesale
+STR-005,Supermarket Detroit #5,North,Detroit,Supermarket
