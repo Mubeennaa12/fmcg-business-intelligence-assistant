@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+sqlalchemy
+pandas
+numpy
+pydantic
+pydantic-settings
+python-dotenv
+langchain
+langchain-google-genai
+langchain-openai
+reportlab
+jinja2
+python-multipart

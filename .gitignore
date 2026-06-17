@@ -1,0 +1,32 @@
+# Python
+backend/venv/
+backend/app/__pycache__/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node/Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.eslintcache
+
+# Local Static builds
+backend/static/
+
+# Database
+backend/*.db
+backend/*.db-journal
+
+# Environments/Secrets
+.env
+backend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# OS Files
+.DS_Store
+Thumbs.db
